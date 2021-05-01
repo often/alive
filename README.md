@@ -33,7 +33,7 @@ Usage: ./alive [arguments (optional)]
     -t, --tls                        Enable TLS. Default: false
     -k <path>, --key=<path>          Set the private key path. Default: private.key
     -c <path>, --certificate=<path>  Set the certificate chain path. Default: certificate.crt
-    -dl, --directory-listing         Disable directory listing. Default: true
+    -l, --directory-listing         Disable directory listing. Default: true
 ```
 
 ## Library usage
