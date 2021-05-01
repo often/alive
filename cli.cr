@@ -23,7 +23,7 @@ parser = OptionParser.parse do |parser|
 	parser.on "-t", "--tls", "Enable TLS. Default: #{tls}" { tls = true }
 	parser.on "-k <path>", "--key=<path>", "Set the private key path. Default: #{key}" { |k| key = k }
 	parser.on "-c <path>", "--certificate=<path>", "Set the certificate chain path. Default: #{certificate}" { |c| certificate = c }
-	parser.on "-dl", "--directory-listing", "Disable directory listing. Default: #{directory_listing}" { directory_listing = false }
+	parser.on "-l", "--directory-listing", "Disable directory listing. Default: #{directory_listing}" { directory_listing = false }
 
 	parser.invalid_option do |flag|
 		puts "ERROR: #{flag} is not a valid option."
