@@ -1,5 +1,23 @@
 require "http/server"
 
+class IndexHandler
+	include HTTP::Handler
+
+	def call(context)
+		path : String = context.request.path
+
+		if path[path.size - 1] == '/'
+			index : String = ".#{path}index.html"
+
+			if File.exists? index
+				context.request.path = index
+			end
+		end
+
+		call_next context
+	end
+end
+
 def alive (
 	directory : String = ".", # Directory path to serve files from.
 	address : String = "127.0.0.#{Random::Secure.rand 255}", # Address to listen on.
@@ -13,6 +31,7 @@ def alive (
 		HTTP::ErrorHandler.new, # https://crystal-lang.org/api/1.0.0/HTTP/ErrorHandler.html
 		HTTP::LogHandler.new, # https://crystal-lang.org/api/1.0.0/HTTP/LogHandler.html
 		HTTP::CompressHandler.new, # https://crystal-lang.org/api/1.0.0/HTTP/CompressHandler.html
+		IndexHandler.new,
 		HTTP::StaticFileHandler.new(
 			directory,
 			directory_listing: directory_listing
@@ -30,6 +49,8 @@ def alive (
 		server.bind_tcp address, port
 	end
 
+	puts "directory: #{directory}"
 	puts "alive at: #{protocol}://#{address}:#{port}"
+	puts "directory listing: #{directory_listing}"
 	server.listen # alive.
 end
