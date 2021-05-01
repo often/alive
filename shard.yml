@@ -1,0 +1,11 @@
+name: alive
+version: 1.0.0
+
+description: |
+  Static file server written in Crystal.
+
+authors:
+  - Sany
+
+crystal: 1.0.0
+license: 0BSD
